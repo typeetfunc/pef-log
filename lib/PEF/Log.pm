@@ -325,7 +325,7 @@ sub _route {
 sub get_stlvl {
 	my $package = __PACKAGE__;
 	my $lvl;
-	for ($lvl = 3; ; $lvl++) {
+	for ($lvl = 2; ; $lvl++) {
 		my @caller_info = caller($lvl);
 		last if $caller_info[0] !~  /^$package/;
 	}
