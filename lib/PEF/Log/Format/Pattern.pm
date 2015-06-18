@@ -130,7 +130,8 @@ IP
 		},
 		caller => sub {
 			<<CALLER
-			my (\$package, undef, \$line) = caller(\$PEF::Log::caller_offset + 4);
+			my \$stlvl = PEF::Log::get_stlvl();			
+			my (\$package, undef, \$line) = caller(\$PEF::Log::caller_offset + \$stlvl);
 			\$info{L} = \$line // '[undef]';
 			\$info{C} = \$package // 'main';
 CALLER
@@ -171,7 +172,8 @@ IP
 			my ($params) = @_;
 			S => <<IP
 			my \$subroutine;
-			for(my \$stlvl = 5;;++\$stlvl) {
+
+			for(my \$stlvl = PEF::Log::get_stlvl();;++\$stlvl) {
 				my \@caller = caller(\$PEF::Log::caller_offset + \$stlvl);
 				\$subroutine = \$caller[3];
 				last if not defined \$subroutine;
