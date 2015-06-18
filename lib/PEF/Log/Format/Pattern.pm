@@ -130,7 +130,7 @@ IP
 		},
 		caller => sub {
 			<<CALLER
-			my \$stlvl = PEF::Log::get_stlvl();			
+			my \$stlvl = PEF::Log::get_stlvl() - 1;			
 			my (\$package, undef, \$line) = caller(\$PEF::Log::caller_offset + \$stlvl);
 			\$info{L} = \$line // '[undef]';
 			\$info{C} = \$package // 'main';
