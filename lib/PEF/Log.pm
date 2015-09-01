@@ -172,6 +172,7 @@ sub logswitchstack {
 
 sub logit {
 	state $lvl_prefix = "PEF::Log::Levels::";
+	local $@;
 	my $log_count = 0;
 	for (my $imsg = 0 ; $imsg < @_ ; ++$imsg) {
 		unshift @_, @error_queue;
